@@ -8,7 +8,7 @@ function AdminPage() {
         <div>
             <AdminNavBar />
             <Routes>
-                <Route path="jokes" element={<Jokes />} />
+            <Route path="jokes" element={<Jokes />} />
             </Routes>
         </div>
     );

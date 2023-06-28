@@ -20,7 +20,21 @@ function getTalkById(setContent, mounted, id) {
 function getAllSpeakers(setContent, mounted) {
     fetchData(`${SERVER_URL}/api/speakers/all`, "GET", setContent, mounted, true);
 }
+*/
 
+function getAllJokes(setContent, mounted) {
+    const url = `${SERVER_URL}/api/jokes/all`;
+    const method = "GET";
+  
+    fetchData(url, method, setContent, mounted, true);
+  }
+  
+
+function getJokeById(setContent, mounted, id) {
+    fetchData(`${SERVER_URL}/api/jokes/id/${id}`, "GET", setContent, mounted, true);
+  }  
+
+/*
 function getSpeakerById(setContent, mounted, id) {
     fetchData(`${SERVER_URL}/api/speakers/id/${id}`, "GET", setContent, mounted, true);
 }
@@ -38,15 +52,8 @@ function updateSpeaker(speaker, mounted, callback) {
 } */
 
 const apiFacade = {
-    /* getAllConferences,
-    getConferenceById,
-    getAllTalks,
-    getTalkById,
-    getAllSpeakers,
-    getSpeakerById,
-    deleteTalk,
-    createSpeaker,
-    updateSpeaker */
+    getAllJokes,
+    getJokeById
 }
 
 export default apiFacade;
