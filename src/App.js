@@ -7,8 +7,6 @@ import Hero from "./components/Hero";
 // PAGES:
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import ConferencesListPage from "./pages/ConferencesListPage";
-import ConferencePage from "./pages/ConferencePage";
 import AdminPage from "./pages/AdminPage";
 import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
@@ -53,8 +51,6 @@ export default function App() {
       <Container className="pageContent pt-3 pb-3" fluid="sm">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/conferences" element={<ConferencesListPage />} />
-          <Route path="/conferences/:id" element={<ConferencePage />} />
           <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginPage login={loginProtocol} />} />

@@ -1,7 +1,7 @@
 import { SERVER_URL } from "./settings";
 import fetchData from "./utils/fetchData";
 
-function getAllConferences(setContent, mounted) {
+/* function getAllConferences(setContent, mounted) {
     fetchData(`${SERVER_URL}/api/conferences/all`, "GET", setContent, mounted, true);
 }
 
@@ -35,10 +35,10 @@ function createSpeaker(speaker, mounted, callback) {
 
 function updateSpeaker(speaker, mounted, callback) {
     fetchData(`${SERVER_URL}/api/speakers/id/${speaker.id}`, "PUT", callback, mounted, true, speaker)
-}
+} */
 
 const apiFacade = {
-    getAllConferences,
+    /* getAllConferences,
     getConferenceById,
     getAllTalks,
     getTalkById,
@@ -46,7 +46,7 @@ const apiFacade = {
     getSpeakerById,
     deleteTalk,
     createSpeaker,
-    updateSpeaker
+    updateSpeaker */
 }
 
 export default apiFacade;
