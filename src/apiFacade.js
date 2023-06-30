@@ -23,12 +23,8 @@ function getAllSpeakers(setContent, mounted) {
 */
 
 function getAllJokes(setContent, mounted) {
-    const url = `${SERVER_URL}/api/jokes/all`;
-    const method = "GET";
-  
-    fetchData(url, method, setContent, mounted, true);
+    fetchData(`${SERVER_URL}/api/jokes/all`, "GET", setContent, mounted, true);
   }
-  
 
 function getJokeById(setContent, mounted, id) {
     fetchData(`${SERVER_URL}/api/jokes/id/${id}`, "GET", setContent, mounted, true);

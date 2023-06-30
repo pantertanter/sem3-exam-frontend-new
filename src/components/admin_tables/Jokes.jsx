@@ -1,29 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import apiFacade from "../../apiFacade";
+import { Button } from "react-bootstrap";
 
 const Jokes = () => {
-  const [joke, setJoke] = useState(null);
+  const [content, setContent] = useState();
+  const mounted = useRef(true);
+  const [currentId, setCurrentId] = useState(1);
+
+  const handleNextId = () => {
+    setCurrentId((prevId) => (prevId < 18 ? prevId + 1 : 1));
+  };
+
+  const handlePrevId = () => {
+    setCurrentId((prevId) => (prevId > 1 ? prevId - 1 : 18));
+  };
 
   useEffect(() => {
-    let mounted = true;
-
-    apiFacade.getJokeById((response) => {
-      console.log("Received joke:", response);
-      setJoke(response);
-    }, mounted, 3);
-
-    return () => {
-      mounted = false;
+    const fetchData = async () => {
+      try {
+        const response = apiFacade.getJokeById(setContent, mounted, currentId);
+        setContent(response);
+        return () => mounted.current = false;
+      } catch (error) {
+        console.error("Error fetching joke:", error);
+      }
     };
-  }, []);
 
-  if (joke === null) {
-    return <p>Loading...</p>;
+    fetchData();
+  }, [currentId]);
+
+  if (!content) {
+    return "Loading...";
   }
+
+  const { joke } = content;
 
   return (
     <div>
-      {joke.joke}
+      <p>{joke}</p>
+      <Button onClick={handlePrevId}>Prev. joke</Button>
+      <Button onClick={handleNextId}>Next joke</Button>
     </div>
   );
 };
