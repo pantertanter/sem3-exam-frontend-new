@@ -38,8 +38,8 @@ const Jokes = () => {
   return (
     <div>
       <p>{joke}</p>
-      <Button onClick={handlePrevId}>Prev. joke</Button>
-      <Button onClick={handleNextId}>Next joke</Button>
+      <Button variant="success" onClick={handlePrevId}>Prev. joke</Button>
+      <Button variant="warning" onClick={handleNextId}>Next joke</Button>
     </div>
   );
 };
