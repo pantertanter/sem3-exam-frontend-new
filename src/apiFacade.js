@@ -30,6 +30,10 @@ function getJokeById(setContent, mounted, id) {
     fetchData(`${SERVER_URL}/api/jokes/id/${id}`, "GET", setContent, mounted, true);
   }  
 
+  function deleteJoke(id, mounted, callback) {
+    fetchData(`${SERVER_URL}/api/jokes/id/${id}`, "DELETE", callback, mounted, true)
+}
+
 /*
 function getSpeakerById(setContent, mounted, id) {
     fetchData(`${SERVER_URL}/api/speakers/id/${id}`, "GET", setContent, mounted, true);
@@ -49,7 +53,8 @@ function updateSpeaker(speaker, mounted, callback) {
 
 const apiFacade = {
     getAllJokes,
-    getJokeById
+    getJokeById,
+    deleteJoke
 }
 
 export default apiFacade;
