@@ -28,8 +28,13 @@ const AllJokes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = apiFacade.deleteJoke(deleteId, mounted, setCallback);
+        const response = await apiFacade.deleteJoke(deleteId, mounted, setCallback);
         setCallback(response);
+        if (!callback) {
+          console.log("no callback");
+        } else {
+        console.log(callback);
+        }        
       } catch (error) {
         console.log("Error deleting the joke:", error);
       }
@@ -52,9 +57,9 @@ const AllJokes = () => {
 
   return (
     <div>
-      {content.map((joke, id) => (
+      {content.map((joke, id, category) => (
         <div key={id}>
-          <p>{joke.id} : {joke.joke}</p>
+          <p>{joke.id} : {joke.joke} : {joke.category}</p>
           <div>
             <Button variant="warning" onClick={() => handleDelete(joke.id)}>Delete joke</Button>
           </div>

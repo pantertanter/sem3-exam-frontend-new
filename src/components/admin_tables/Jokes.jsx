@@ -34,7 +34,7 @@ const Jokes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = apiFacade.deleteJoke(deleteId, mounted, setCallback);
+        const response = await apiFacade.deleteJoke(deleteId, mounted, setCallback);
         setCallback(response);
         return () => mounted.current = false;
       } catch (error) {
@@ -58,11 +58,14 @@ const Jokes = () => {
     </div>
   )}
 
-  const { id, joke } = content;
+  const { id, joke, category } = content;
 
   return (
     <div>
-      <p>{id}{joke}</p>
+      <p>Id: {currentId} <br /></p>
+      <p>Joke: {joke}<br /></p>
+      <p>Cat: {category}</p>
+
       <Button variant="success" onClick={handlePrevId}>Prev. joke</Button>
       <Button variant="warning" onClick={handleNextId}>Next joke</Button>
       <Button variant="warning" onClick={useDeleteId}>Delete joke</Button>
