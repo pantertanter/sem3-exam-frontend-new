@@ -23,7 +23,7 @@ const AllJokes = () => {
     return () => {
       mounted.current = false;
     };
-  }, []);
+  }, [deleteId]);
 
   useEffect(() => {
     const fetchData = async () => {
