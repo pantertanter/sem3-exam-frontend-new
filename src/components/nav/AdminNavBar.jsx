@@ -4,8 +4,9 @@ export default function AdminNavBar({ loggedIn, user }) {
 
     return (
         <ul className="navBar">
-            <NavItem to="allJokes" text="All jokes" />
-            <NavItem to="jokes" text="Iterate jokes" />
+            <NavItem to="AllJokes" text="All jokes" />
+            <NavItem to="Jokes" text="Iterate jokes" />
+            <NavItem to="JokesByCat" text="Category based jokes" />
         </ul>
     );
 }

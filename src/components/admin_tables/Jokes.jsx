@@ -5,17 +5,35 @@ import { Button } from "react-bootstrap";
 const Jokes = () => {
   const [content, setContent] = useState();
   const mounted = useRef(true);
+  const [allJokes, setAllJokes] = useState();
   const [currentId, setCurrentId] = useState(1);
   const [callback, setCallback] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
   const handleNextId = () => {
-    setCurrentId((prevId) => (prevId < 9 ? prevId + 1 : 1));
+    setCurrentId((prevId) => (prevId < allJokes.length ? prevId + 1 : 1));
   };
 
   const handlePrevId = () => {
-    setCurrentId((prevId) => (prevId > 0 ? prevId - 1 : 5));
+    setCurrentId((prevId) => (prevId >= 2 ? prevId - 1 : allJokes.length));
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = apiFacade.getAllJokes(setAllJokes, mounted);
+        setAllJokes(response);
+      } catch (error) {
+        console.error("Error fetching jokes:", error);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import apiFacade from "../../apiFacade";
 import { Button } from "react-bootstrap";
 
-const AllJokes = () => {
+const JokesByCat = () => {
   const [content, setContent] = useState();
   const mounted = useRef(true);
   const [callback, setCallback] = useState(null);
@@ -55,18 +55,37 @@ const AllJokes = () => {
     setDeleteId(id);
   };
 
+  // Function to group jokes by category
+  const groupJokesByCategory = () => {
+    const categorizedJokes = {};
+    content.forEach((joke) => {
+      if (!categorizedJokes[joke.category]) {
+        categorizedJokes[joke.category] = [];
+      }
+      categorizedJokes[joke.category].push(joke);
+    });
+    return categorizedJokes;
+  };
+
+  const categorizedJokes = groupJokesByCategory();
+
   return (
     <div>
-      {content.map((joke, id, category) => (
-        <div key={id}>
-          <p>{joke.id} : {joke.joke} : {joke.category}</p>
-          <div>
-            <Button variant="warning" onClick={() => handleDelete(joke.id)}>Delete joke</Button>
-          </div>
+      {Object.keys(categorizedJokes).map((category) => (
+        <div key={category}>
+          <b>{category}</b>
+          {categorizedJokes[category].map((joke) => (
+            <div key={joke.id}>
+              <p>{joke.joke}</p>
+              <div>
+                <Button variant="warning" onClick={() => handleDelete(joke.id)}>Delete joke</Button>
+              </div>
+            </div>
+          ))}
         </div>
       ))}
     </div>
   );
 };
 
-export default AllJokes;
+export default JokesByCat;
