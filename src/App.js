@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import userFacade from "./auth/userFacade";
 import NavBar from "./components/nav/NavBar";
 import Hero from "./components/Hero";
+import AllJokes from "./components/admin_tables/AllJokes";
 // PAGES:
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -33,7 +34,7 @@ export default function App() {
         setUserState(res);
         if (!loggedInState) setLoggedInState(true);
         if (res.roles.includes("user")) {
-          navigate("/conferences");
+          navigate("/AllJokes");
         }
         else if (res.roles.includes("admin")) {
           navigate("/admin");
